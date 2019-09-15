@@ -1,6 +1,9 @@
 import React,{Component} from 'react';
-// import logo from './logo.svg';
 import './App.css';
+// import Holiday from './Holiday/Holiday';
+// import Today from './Today/Today';
+// import { Switch, Route, Link } from "react-router-dom";
+
 
 class App extends Component{
 
@@ -68,31 +71,44 @@ class App extends Component{
 
   render(){
 
-    const arr1 = this.state.passedHolidays.map( item => {
-      return <li>{item.date.datetime.day + " " + item.date.datetime.month}</li>
+    const arr1 = this.state.passedHolidays.map( (item,i) => {
+      return <li key={i}>{item.date.datetime.day + "/" + item.date.datetime.month+" :: "+item.name}</li>
     });
-    const arr2 = this.state.upcomingHolidays.map( item => {
-      return <li>{item.date.datetime.day + " " + item.date.datetime.month}</li>
+    const arr2 = this.state.upcomingHolidays.map( (item,i) => {
+      return <li key={i}>{item.date.datetime.day + "/" + item.date.datetime.month+" :: "+item.name}</li>
     });
     if(this.state.holiday.length === 0)
     {
-
+      
     }
-    return(          
+    return( 
+      <div>         
       <div>
         <div>
-          {/* Holiday Status:: */}
+          <h2>--No Holiday Today--</h2>
+              
+        </div>
+        <div>
+          {/* <Link to="/" ><button>Upcoming Holidays</button></Link>
+          <Link to="/passedHoliday"><button>Passed Holidays</button></Link> */}
+        <h3>Passed Holidays</h3>
+        <p>{arr2}</p>
+        </div>
+        <div>
+          {/* <Holiday /> */}
+          <h3>Upcoming Holidays</h3>
+          <p>{arr1}</p>
           
+
         </div>
-        <div>
-          {/* Two button area */}
-          <button>Upcoming Holidays</button>
-          <button>Passed Holidays</button>
-        </div>
-        <div>
-          {/* Date list block */}
-          <h3>date list block division</h3>
-        </div>
+      </div>
+
+      {/* <Switch>
+        <Route path="/passedHoliday" exact render={()=> <Holiday holidayList={this.state.passedHolidays}/>
+      }/>
+        <Route path="/" exact render={() => <Holiday holidayList={this.state.upcomingHolidays} />
+      }/>
+      </Switch> */}
       </div>
     );
   }
